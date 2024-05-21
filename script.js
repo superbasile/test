@@ -1,6 +1,7 @@
 const songs = [
     { src: "https://youtu.be/LOZuxwVk7TU", answer: "Toxic" },
     { src: "https://youtu.be/C-u5WLJ9Yk4", answer: "Baby one more time" },
+	{ src: "https://youtu.be/q3uCZewPLi8", answer: "Antoine Daniel" },
     // Ajoutez plus de chansons ici
 ];
 
@@ -14,13 +15,20 @@ function onYouTubeIframeAPIReady() {
         width: '300',
         videoId: '',
         events: {
-            'onReady': onPlayerReady
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
         }
     });
 }
 
 function onPlayerReady(event) {
     loadSong(currentSongIndex);
+}
+
+function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+        // Action à effectuer lorsque la vidéo se termine
+    }
 }
 
 const playButton = document.getElementById('playButton');
@@ -36,7 +44,7 @@ function loadSong(index) {
         return;
     }
     const videoId = new URL(songs[index].src).searchParams.get('v');
-    player.loadVideoById(videoId);
+    player.cueVideoById(videoId);
 }
 
 playButton.addEventListener('click', () => {
@@ -57,3 +65,4 @@ submitAnswerButton.addEventListener('click', () => {
     currentSongIndex++;
     loadSong(currentSongIndex);
 });
+
