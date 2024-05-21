@@ -1,6 +1,4 @@
 const songs = [
-    { src: "https://youtu.be/LOZuxwVk7TU", answer: "Toxic" },
-    { src: "https://youtu.be/C-u5WLJ9Yk4", answer: "Baby one more time" },
 	{ src: "https://youtu.be/q3uCZewPLi8", answer: "Antoine Daniel" },
     // Ajoutez plus de chansons ici
 ];
